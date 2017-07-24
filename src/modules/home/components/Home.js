@@ -4,6 +4,7 @@ import SearchBar from '../../../common/components/SearchBar'
 import Posts from './Posts'
 import Picker from './Picker'
 import { options } from '../../../common/utils/options'
+import '../styles/home.css'
 
 export default class Home extends Component {
   render () {
@@ -13,7 +14,7 @@ export default class Home extends Component {
       <section>
         <Header />
         <SearchBar onSearch={(value) => onSearch(value)}/>
-        { 
+        {
           isFetching 
           ? <p>Loading....</p>
           : (users && <Posts users={users} />)

@@ -1,0 +1,27 @@
+.posts {
+  width: 500px;
+  margin: 0 auto;
+  padding: 0;
+  border: 1px solid red;
+}
+
+.user {
+  display: flex;
+  padding: 10px 0;
+  border-top: 1px solid #e1e4e8;
+}
+
+.user .avatar a {
+  display: block;
+}
+
+.user .avatar img {
+  width: 60px;
+  height: 60px;
+  border-radius: 3px;
+}
+
+.user .info {
+  padding-left: 10px;
+  flex: 1;
+}

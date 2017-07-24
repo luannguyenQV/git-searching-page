@@ -11,6 +11,12 @@ import {
   selectReddit,
   invalidateReddit
 } from '../../modules/home/actions'
+import {
+  REQUEST_USER,
+  RECEIVE_USER,
+  requestUser,
+  receiveUser
+} from '../../modules/user/actions'
 import { selectedSearchValue, usersSearchResult } from '../../modules/home/reducers'
 
 export function fetchGitSearchAPI(searchValue) {
@@ -18,10 +24,22 @@ export function fetchGitSearchAPI(searchValue) {
           .then(response => response.json())
 }
 
-export function* fetchGitSearch(reddit) {
-  yield put(requestPosts(reddit))
-  const posts = yield call(fetchGitSearchAPI, reddit)
+export function fetchGitUserAPI(userName) {
+  return fetch(`https://api.github.com/users/${userName}?client_id=95409d3057ce31ae8f12&client_secret=f9b2e2ee33f4103e2c1317fc8f7b80eca46ea085` )
+          .then(response => response.json())
+}
+
+export function* fetchGitSearch(searchValue) {
+  yield put(requestPosts(searchValue))
+  const posts = yield call(fetchGitSearchAPI, searchValue)
   yield put(receivePosts(posts))
+}
+
+export function* fetchUser(userName) {
+  console.log('username: ', userName)
+  const userInfo = yield call(fetchGitUserAPI, userName)
+  console.log('userInfo: ', userInfo)
+  yield put(receiveUser(userInfo))
 }
 
 export function* invalidReddit() {
@@ -42,7 +60,15 @@ export function* nextSearch() {
   }
 }
 
+export function* nextUser() {
+  while(true) {
+    const { payload: userName } = yield take(REQUEST_USER)
+    yield fork(fetchUser, userName)
+  }
+}
+
 export default function* rootSaga() {
   yield fork(nextSearch)
   yield fork(invalidReddit)
+  yield fork(nextUser)
 }

@@ -1,0 +1,13 @@
+.user-detail {
+
+}
+
+.user-detail .profile {
+  display: flex;
+}
+
+.user-detail .profile .avatar img {
+  width: 150px;
+  height: 150px;
+  border-radius: 5px;
+}
