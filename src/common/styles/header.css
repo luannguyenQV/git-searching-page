@@ -1,0 +1,10 @@
+header {
+  text-align: center;
+}
+
+header h1 {
+  padding: 10px;
+  font-size: 60px;
+  font-weight: bold;
+  color: rgba(175, 47, 47, 0.5);
+}
