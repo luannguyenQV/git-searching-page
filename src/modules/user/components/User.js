@@ -15,7 +15,7 @@ export default class User extends Component {
     return (
       <section>
         <Header />
-        <div className='user-detail'>
+        <div className='container user-detail'>
           {
             user 
             ? <div className='profile'>

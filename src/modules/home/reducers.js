@@ -1,30 +1,30 @@
 
 import { handleActions } from 'redux-actions'
 import {
-  requestPosts,
-  receivePosts,
+  requestUsers,
+  receiveUsers,
   selectReddit,
   gitSearch,
-  invalidateReddit
+  invalidateSearch
 } from './actions'
 
-// export const selectedRedditSelector = state => state['home'].selectedReddit
-// export const postsByRedditSelector = state => state['home'].posts
 export const selectedSearchValue = state => state['home'].searchValue
 export const usersSearchResult = state => state['home'].users
+export const usersSearchPageNumber = state => state['home'].pageNumber
 
 const defaultState = {
   searchValue: '',
+  pageNumber: 1,
   users: [],
   isFetching: false,
   didInvalidate: false
 }
 
 const handlers = {
-  [requestPosts]: (state, action) => ({...state,
+  [requestUsers]: (state, action) => ({...state,
     ...{ isFetching: true }
   }),
-  [receivePosts]: (state, action) => {
+  [receiveUsers]: (state, action) => {
     const { items, total_count } = action.payload
     return ({...state,
       ...{ 
@@ -35,10 +35,15 @@ const handlers = {
     })
   },
   [gitSearch]: (state, action) => ({...state,
-    ...{ searchValue: action.payload }
+    ...{ 
+      searchValue: action.payload.searchValue,
+      pageNumber: action.payload.pageNumber 
+    }
   }),
-  [invalidateReddit]: (state, action) => ({...state,
-    ...{}
+  [invalidateSearch]: (state, action) => ({...state,
+    ...{
+      didInvalidate: true
+    }
   })
 }
 

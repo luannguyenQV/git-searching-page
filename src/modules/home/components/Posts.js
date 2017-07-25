@@ -1,8 +1,9 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import ReactPaginate from 'react-paginate'
 import '../styles/posts.css'
 
-export default ({users}) => {
+export default ({users, totalPage, handlePageClick}) => {
   return (
     <div className='posts'>
       {
@@ -13,11 +14,26 @@ export default ({users}) => {
                 <img src={user.avatar_url} />
               </Link>
             </div>
-            <div className='info'>
-              <a>{user.login}</a>
+            <div className='user-info'>
+              <Link to={`/user/${user.login}`}>
+                {user.login}
+              </Link>
             </div>
           </div>
         )
+      }
+      { 
+        users && users.length > 0 && <ReactPaginate previousLabel={"previous"}
+          nextLabel={"next"}
+          breakLabel={<a href="">...</a>}
+          breakClassName={"break-me"}
+          pageCount={totalPage}
+          marginPagesDisplayed={2}
+          pageRangeDisplayed={4}
+          onPageChange={(data) => handlePageClick(data)}
+          containerClassName={"pagination"}
+          subContainerClassName={"pages pagination"}
+          activeClassName={"active"} />
       }
     </div>
   )

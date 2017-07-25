@@ -1,17 +1,14 @@
 import { createAction } from 'redux-actions'
 
-export const REQUEST_POSTS = 'REQUEST_POSTS'
-export const RECEIVE_POSTS = 'RECEIVE_POSTS'
-export const SELECT_REDDIT = 'SELECT_REDDIT'
+export const REQUEST_USERS = 'REQUEST_USERS'
+export const RECEIVE_USERS = 'RECEIVE_USERS'
 export const GIT_SEARCH = 'GIT_SEARCH'
-export const INVALIDATE_REDDIT = 'INVALIDATE_REDDIT'
+export const INVALIDATE_SEARCH = 'INVALIDATE_SEARCH'
 
-export const requestPosts = createAction(REQUEST_POSTS)
+export const requestUsers = createAction(REQUEST_USERS)
 
-export const receivePosts = createAction(RECEIVE_POSTS)
-
-export const selectReddit = createAction(SELECT_REDDIT)
+export const receiveUsers = createAction(RECEIVE_USERS)
 
 export const gitSearch = createAction(GIT_SEARCH)
 
-export const invalidateReddit = createAction(INVALIDATE_REDDIT)
+export const invalidateSearch = createAction(INVALIDATE_SEARCH)
