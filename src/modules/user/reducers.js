@@ -1,26 +1,37 @@
-
 import { handleActions } from 'redux-actions'
 import {
   requestUser,
-  receiveUser
+  receiveUser,
+  receiveUserRepos,
+  didInvalidate,
 } from './actions'
 
 const defaultState = {
-  isFetching: false
+  isFetching: false,
+  didInvalidate: false
 }
 
 const handlers = {
   [requestUser]: (state, action) => ({...state,
     ...{ isFetching: true }
   }),
-  [receiveUser]: (state, action) => {
-    return ({...state,
+  [receiveUser]: (state, action) => ({...state,
       ...{ 
         user: action.payload,
         isFetching: false 
       }
-    })
-  }
+  }),
+  [receiveUserRepos]: (state, action) => ({...state,
+      ...{ 
+        reposes: action.payload,
+        isFetching: false
+      }
+  }),
+  [didInvalidate]: (state, action) => ({...state,
+      ...{ 
+        didInvalidate: true
+      }
+  })
 }
 
 export default handleActions(handlers, defaultState)

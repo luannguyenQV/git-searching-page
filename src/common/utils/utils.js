@@ -1,8 +1,8 @@
-export function parseSearchterm(searchString) {
-  const rs = searchString.split('=')
-  if (rs[0] === '?q' && rs[1]) {
-    return rs[1]
-  } else {
-    return ''
-  }
+export function getParameterByName(name, url) {
+    name = name.replace(/[\[\]]/g, "\\$&");
+    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, " "));
 }

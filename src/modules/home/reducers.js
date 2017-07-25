@@ -3,7 +3,6 @@ import { handleActions } from 'redux-actions'
 import {
   requestUsers,
   receiveUsers,
-  selectReddit,
   gitSearch,
   invalidateSearch
 } from './actions'

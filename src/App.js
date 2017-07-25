@@ -4,9 +4,7 @@ import { Provider } from 'react-redux'
 import createSagaMiddleware from 'redux-saga'
 import createHistory from 'history/createBrowserHistory'
 import { Route } from 'react-router'
-import { NavLink } from 'react-router-dom'
-import { ConnectedRouter, routerReducer, routerMiddleware } from 'react-router-redux'
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
+import { ConnectedRouter, routerMiddleware } from 'react-router-redux'
 
 import Home from './modules/home/containers/Home'
 import User from './modules/user/containers/User'
@@ -33,14 +31,12 @@ class App extends Component {
   render() {
     return (
       <Provider store={store}>
-        <MuiThemeProvider>
-          <ConnectedRouter history={history}>
-            <div>
-              <Route exact path="/" component={Home}/>
-              <Route exact path="/user/:name" component={User}/>
-            </div>
-          </ConnectedRouter>
-        </MuiThemeProvider>
+        <ConnectedRouter history={history}>
+          <div>
+            <Route exact path="/" component={Home}/>
+            <Route exact path="/user/:name" component={User}/>
+          </div>
+        </ConnectedRouter>
       </Provider>
     )
   }

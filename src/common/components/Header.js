@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import '../styles/header.css'
 
 export default () => (
-  <header className='my-container'>
+  <header>
     <h1>
       <Link to='/'>{`<GIT/>`}</Link>
     </h1>

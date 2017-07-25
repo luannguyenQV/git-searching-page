@@ -11,7 +11,10 @@ const mapDispatchToProps = dispatch => ({
 })
 
 const mapStateToProps = state => ({
-  user: state['user'].user
+  user: state['user'].user,
+  reposes: state['user'].reposes,
+  isFetching: state['user'].isFetching,
+  didInvalidate: state['user'].didInvalidate
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(User)

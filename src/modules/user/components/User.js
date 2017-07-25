@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Header from '../../../common/components/Header'
-import SearchBar from '../../../common/components/SearchBar'
+import UserDetail from './UserDetail'
+import ListReposes from './ListReposes'
 import '../styles/user.css'
 
 export default class User extends Component {
@@ -11,22 +12,26 @@ export default class User extends Component {
   }
 
   render () {
-    const { user } = this.props
+    const { 
+      user,
+      reposes,
+      didInvalidate
+    } = this.props
+
     return (
       <section>
         <Header />
-        <div className='container user-detail'>
+        <div className='my-container user-detail'>
           {
-            user 
-            ? <div className='profile'>
-              <div className='avatar'>
-                <img src={user.avatar_url} />
-              </div>
-              <div className='info'>
-                <h1>{user.login}</h1>
-              </div>
+            !didInvalidate ?
+              user ? <div>
+                  <UserDetail user={user} />
+                  <ListReposes reposes={reposes} />
+                </div> 
+                : <div>Loading...</div>
+            : <div>
+              <p>Data not found.</p>
             </div>
-            : <div>loading</div>
           }
         </div>
       </section>

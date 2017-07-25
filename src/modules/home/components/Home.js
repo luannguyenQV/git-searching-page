@@ -2,17 +2,21 @@ import React, { Component } from 'react'
 import Header from '../../../common/components/Header'
 import SearchBar from '../../../common/components/SearchBar'
 import Posts from './Posts'
-import Picker from './Picker'
-import { options } from '../../../common/utils/options'
-import { parseSearchterm } from '../../../common/utils/utils'
+import { getParameterByName } from '../../../common/utils/utils'
 import '../styles/home.css'
 
 export default class Home extends Component {
   componentDidMount() {
-    const { onSearch, isFetching } = this.props
-    const searchTerm = parseSearchterm(this.props.location.search)
+    const { onGotoPage, isFetching } = this.props
+    const searchTerm = getParameterByName('q', this.props.location.search)
+    const page = getParameterByName('page', this.props.location.search)
     if (searchTerm && !isFetching) {
-      onSearch(searchTerm)
+      if (page) {
+        onGotoPage(searchTerm, page)
+      }
+      else {
+        onGotoPage(searchTerm, 1)
+      }
     }
   }
 
@@ -40,7 +44,7 @@ export default class Home extends Component {
             : (users && <Posts 
               users={users} 
               handlePageClick={(data) => this.handlePageClick(data)}
-              totalPage={totalCount}
+              totalCount={totalCount}
             />)
           }
         </div>

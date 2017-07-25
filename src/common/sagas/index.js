@@ -1,19 +1,15 @@
 import { take, put, call, fork, select } from 'redux-saga/effects'
 import fetch from 'isomorphic-fetch'
 import {
-  REQUEST_USERS,
   GIT_SEARCH,
   INVALIDATE_SEARCH,
   requestUsers,
-  receiveUsers,
-  selectReddit,
-  invalidateReddit
+  receiveUsers
 } from '../../modules/home/actions'
 import {
   REQUEST_USER,
-  RECEIVE_USER,
-  requestUser,
-  receiveUser
+  receiveUser,
+  receiveUserRepos
 } from '../../modules/user/actions'
 import { 
   selectedSearchValue, 
@@ -31,6 +27,11 @@ export function fetchGitUserAPI(userName) {
           .then(response => response.json())
 }
 
+export function fetchGitUserReposAPI(userName) {
+  return fetch(`https://api.github.com/users/${userName}/repos?client_id=95409d3057ce31ae8f12&client_secret=f9b2e2ee33f4103e2c1317fc8f7b80eca46ea085` )
+          .then(response => response.json())
+}
+
 export function* fetchGitSearch(searchValue, page) {
   yield put(requestUsers(searchValue))
   const users = yield call(fetchGitSearchAPI, searchValue, page)
@@ -40,6 +41,11 @@ export function* fetchGitSearch(searchValue, page) {
 export function* fetchUser(userName) {
   const userInfo = yield call(fetchGitUserAPI, userName)
   yield put(receiveUser(userInfo))
+}
+
+export function* fetchUserRepos(userName) {
+  const repos = yield call(fetchGitUserReposAPI, userName)
+  yield put(receiveUserRepos(repos))
 }
 
 export function* invalidSearch() {
@@ -66,6 +72,7 @@ export function* nextUser() {
   while(true) {
     const { payload: userName } = yield take(REQUEST_USER)
     yield fork(fetchUser, userName)
+    yield fork(fetchUserRepos, userName)
   }
 }
 

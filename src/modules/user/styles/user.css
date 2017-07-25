@@ -1,5 +1,28 @@
+.user-detail {
+  margin-top: 40px;
+}
+
 .user-detail .profile {
   display: flex;
+}
+
+.user-detail .profile .info {
+  margin-left: 20px;
+}
+
+.user-detail .profile .info h1 {
+  color: #586069;
+  font-size: 30px;
+  margin: 0 0 10px;
+}
+
+.user-detail .profile .detail-info {
+  display: flex;
+}
+
+.user-detail .profile .detail-info p {
+  opacity: 0.8;
+  padding-right: 15px;
 }
 
 .user-detail .profile .avatar img {
