@@ -7,6 +7,6 @@
 - react-router
 
 # What next
-[ ] Update styles
-[ ] Update user info
-[ ] Using font-awaresome icon
+[ ] Update styles   
+[ ] Update user info  
+[ ] Using font-awaresome icon  
