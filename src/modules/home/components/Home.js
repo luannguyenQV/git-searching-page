@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import ReactPaginate from 'react-paginate'
 import Header from '../../../common/components/Header'
+import Footer from '../../../common/components/Footer'
 import SearchBar from '../../../common/components/SearchBar'
 import Posts from './Posts'
 import { getParameterByName } from '../../../common/utils/utils'
@@ -44,7 +45,7 @@ export default class Home extends Component {
           history={history}
           searchValue={searchValue}
         />
-        <div className='my-container'>
+        <div className='my-container my-body'>
           {
             isFetching 
             ? <div className='loading'>Loading....</div>
@@ -70,6 +71,7 @@ export default class Home extends Component {
             </div>
           }
         </div>
+        <Footer />
       </section>
     )
   }

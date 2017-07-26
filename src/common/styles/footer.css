@@ -1,0 +1,14 @@
+footer {
+  display: flex;
+  height: 50px;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
+  background-color: rgba(175, 47, 47, 0.7);
+  border-bottom: 5px solid rgba(175, 47, 47, 1);
+}
+
+footer a {
+  color: #fff;
+}

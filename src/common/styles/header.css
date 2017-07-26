@@ -1,5 +1,6 @@
 header {
   text-align: center;
+  border-top: 5px solid rgba(175, 47, 47, 0.3);
 }
 
 header h1 a {
@@ -22,6 +23,11 @@ header h1 a:active  {
 }
 
 header h1 a:visited {
+  color: rgba(175, 47, 47, 0.5);
+  text-decoration: none;
+}
+
+header h1 a:link {
   color: rgba(175, 47, 47, 0.5);
   text-decoration: none;
 }

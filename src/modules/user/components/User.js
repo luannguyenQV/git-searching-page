@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import ReactPaginate from 'react-paginate'
 import Header from '../../../common/components/Header'
+import Footer from '../../../common/components/Footer'
 import UserDetail from './UserDetail'
 import ListReposes from './ListReposes'
 import { getParameterByName } from '../../../common/utils/utils'
@@ -34,7 +35,7 @@ export default class User extends Component {
     return (
       <section>
         <Header />
-        <div className='my-container user-detail'>
+        <div className='my-container my-body user-detail'>
           {
             !didInvalidate ?
               user ? <div>
@@ -65,6 +66,7 @@ export default class User extends Component {
             </div>
           }
         </div>
+        <Footer />
       </section>
     )
   }

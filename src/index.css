@@ -17,6 +17,10 @@ a:hover {
   margin: 0 auto;
 }
 
+.my-body {
+  min-height: 700px;
+}
+
 .loading {
   height: 2400px;
 }
