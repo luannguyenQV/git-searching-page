@@ -1,6 +1,6 @@
 <GIT/> is a minimal app for git user managerment
 
-# Technical:
+# Technical
 - react
 - react-redux
 - redux-saga
