@@ -1,4 +1,4 @@
-<GIT/> is a minimal app for git user managerment
+< GIT /> is a minimal app for git user managerment
 
 # Technical
 - react
