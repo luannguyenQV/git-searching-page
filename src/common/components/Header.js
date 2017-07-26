@@ -1,9 +1,9 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import '../styles/header.css'
+import styles from '../styles/header.css'
 
 export default () => (
-  <header>
+  <header className={styles.header}>
     <h1>
       <Link to='/'>{`<GIT/>`}</Link>
     </h1>

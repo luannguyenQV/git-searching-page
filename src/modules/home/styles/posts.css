@@ -33,6 +33,7 @@
   display: inline-block;
   padding-left: 15px;
   padding-right: 15px;
+  cursor: pointer;
 }
 
 #react-paginate li {
@@ -40,5 +41,14 @@
 }
 
 #react-paginate .break a {
-  cursor: default;
+  cursor: pointer;
+}
+
+.pagination > li > a {
+  cursor: pointer;
+}
+
+.pagination-container {
+  display: flex;
+  justify-content: center;
 }

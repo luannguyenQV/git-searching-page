@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import ReactPaginate from 'react-paginate'
 import Header from '../../../common/components/Header'
 import SearchBar from '../../../common/components/SearchBar'
 import Posts from './Posts'
@@ -28,6 +29,12 @@ export default class Home extends Component {
 
   render () {
     const { totalCount, onSearch, users, isFetching, searchValue, history } = this.props
+    const totalPage = Math.ceil(totalCount / 30)
+    // Because search return only first 1000 result:
+    let realTotalPage = 33
+    if (totalCount < 1000) {
+      realTotalPage = Math.ceil(totalCount / 30)
+    }
 
     return (
       <section>
@@ -40,12 +47,27 @@ export default class Home extends Component {
         <div className='my-container'>
           {
             isFetching 
-            ? <p>Loading....</p>
+            ? <div className='loading'>Loading....</div>
             : (users && <Posts 
+              totalCount={totalCount}
               users={users} 
               handlePageClick={(data) => this.handlePageClick(data)}
-              totalCount={totalCount}
             />)
+          }
+          { 
+            totalPage > 1 && <div className='pagination-container'>
+              <ReactPaginate previousLabel={'previous'}
+                nextLabel={'next'}
+                breakLabel={<a href=''>...</a>}
+                breakClassName={'break-me'}
+                pageCount={realTotalPage}
+                marginPagesDisplayed={2}
+                pageRangeDisplayed={4}
+                onPageChange={(data) => this.handlePageClick(data)}
+                containerClassName={'pagination'}
+                subContainerClassName={'pages pagination'}
+                activeClassName={'active'} />
+            </div>
           }
         </div>
       </section>

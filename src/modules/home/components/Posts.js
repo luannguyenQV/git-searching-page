@@ -1,16 +1,12 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import ReactPaginate from 'react-paginate'
 import '../styles/posts.css'
 
-export default ({users, totalCount, handlePageClick}) => {
-  // Because search return only first 1000 result:
-  const realTotalPage = Math.ceil(1000 / 30)
-  const totalPage = Math.ceil(totalCount / 30)
+export default ({users, totalCount}) => {
   return (
     <div className='posts'>
       {
-        totalCount > 1 && <div className=''>
+        totalCount > 1 && <div className='search-result'>
           Result: {totalCount}
         </div>
       }
@@ -33,19 +29,8 @@ export default ({users, totalCount, handlePageClick}) => {
           </div>
         )
       }
-      { 
-        totalPage > 1 && <ReactPaginate previousLabel={"previous"}
-          nextLabel={"next"}
-          breakLabel={<a href="">...</a>}
-          breakClassName={"break-me"}
-          pageCount={realTotalPage}
-          marginPagesDisplayed={2}
-          pageRangeDisplayed={4}
-          onPageChange={(data) => handlePageClick(data)}
-          containerClassName={"pagination"}
-          subContainerClassName={"pages pagination"}
-          activeClassName={"active"} />
-      }
     </div>
   )
 }
+
+

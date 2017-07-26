@@ -27,8 +27,8 @@ export function fetchGitUserAPI(userName) {
           .then(response => response.json())
 }
 
-export function fetchGitUserReposAPI(userName) {
-  return fetch(`https://api.github.com/users/${userName}/repos?client_id=95409d3057ce31ae8f12&client_secret=f9b2e2ee33f4103e2c1317fc8f7b80eca46ea085` )
+export function fetchGitUserReposAPI(userName, pageNumber) {
+  return fetch(`https://api.github.com/users/${userName}/repos?page=${pageNumber}&client_id=95409d3057ce31ae8f12&client_secret=f9b2e2ee33f4103e2c1317fc8f7b80eca46ea085` )
           .then(response => response.json())
 }
 
@@ -43,8 +43,8 @@ export function* fetchUser(userName) {
   yield put(receiveUser(userInfo))
 }
 
-export function* fetchUserRepos(userName) {
-  const repos = yield call(fetchGitUserReposAPI, userName)
+export function* fetchUserRepos(userName, pageNumber) {
+  const repos = yield call(fetchGitUserReposAPI, userName, pageNumber)
   yield put(receiveUserRepos(repos))
 }
 
@@ -70,9 +70,9 @@ export function* nextSearch() {
 
 export function* nextUser() {
   while(true) {
-    const { payload: userName } = yield take(REQUEST_USER)
+    const { payload: { userName, pageNumber } } = yield take(REQUEST_USER)
     yield fork(fetchUser, userName)
-    yield fork(fetchUserRepos, userName)
+    yield fork(fetchUserRepos, userName, pageNumber)
   }
 }
 

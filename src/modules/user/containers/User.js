@@ -5,9 +5,9 @@ import {
 } from '../actions'
 
 const mapDispatchToProps = dispatch => ({
-  onFetchUser: (userName) => {
-    dispatch(requestUser(userName))
-  }
+  onFetchUserOnPage: ({ userName, pageNumber }) => {
+    dispatch(requestUser({ userName, pageNumber: pageNumber }))
+  },
 })
 
 const mapStateToProps = state => ({

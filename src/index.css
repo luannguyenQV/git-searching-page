@@ -4,7 +4,25 @@ body {
   font-family: sans-serif;
 }
 
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
 .my-container {
   max-width: 600px;
   margin: 0 auto;
+}
+
+.loading {
+  height: 2400px;
+}
+
+.search-result {
+  font-weight: bold;
+  font-size: 16px;
+  color: #586069;
 }

@@ -7,13 +7,18 @@ import {
 } from './actions'
 
 const defaultState = {
+  pageNumber: 1,
   isFetching: false,
   didInvalidate: false
 }
 
 const handlers = {
   [requestUser]: (state, action) => ({...state,
-    ...{ isFetching: true }
+    ...{
+      userName: action.payload.userName,
+      isFetching: true,
+      pageNumber: action.payload.pageNumber
+    }
   }),
   [receiveUser]: (state, action) => ({...state,
       ...{ 

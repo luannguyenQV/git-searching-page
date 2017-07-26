@@ -30,3 +30,11 @@
   height: 150px;
   border-radius: 5px;
 }
+
+.user-detail .reposes {
+  margin-top: 40px;
+}
+
+.user-detail .reposes .repos {
+  padding: 10px 0;
+}
