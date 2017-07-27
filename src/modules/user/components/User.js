@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import ReactPaginate from 'react-paginate'
 import Header from '../../../common/components/Header'
 import Footer from '../../../common/components/Footer'
+import SearchBar from '../../../common/components/SearchBar'
 import UserDetail from './UserDetail'
 import ListReposes from './ListReposes'
 import { getParameterByName } from '../../../common/utils/utils'
@@ -12,7 +13,7 @@ export default class User extends Component {
     const { onFetchUserOnPage } = this.props
     const name = this.props.match.params.name
     const page = getParameterByName('page', this.props.location.search)
-    onFetchUserOnPage({ userName: name, pageNumber: 1 })
+    onFetchUserOnPage({ userName: name, pageNumber: page })
   }
 
   handlePageClick(data) {
@@ -25,6 +26,9 @@ export default class User extends Component {
     const { 
       user,
       reposes,
+      history,
+      searchValue,
+      onSearch,
       didInvalidate
     } = this.props
     let totalPage = 0
@@ -35,6 +39,11 @@ export default class User extends Component {
     return (
       <section>
         <Header />
+        <SearchBar 
+          onSearch={(value) => onSearch(value)}
+          history={history}
+          searchValue={searchValue}
+        />
         <div className='my-container my-body user-detail'>
           {
             !didInvalidate ?
