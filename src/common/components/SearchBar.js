@@ -51,7 +51,7 @@ export default class SearchBar extends Component {
             value='SEARCH'
             onClick={() => {
               this.refs.searchInput.value && onSearch(this.refs.searchInput.value)
-              history.push(`?q=${this.refs.searchInput.value}`)
+              history.push(`/?q=${this.refs.searchInput.value}`)
             }}
           />
         </div>
