@@ -15,7 +15,7 @@ export default class SearchBar extends Component {
 
     if (e.key === 'Enter') {
       e.preventDefault()
-      history.push(`?q=${this.refs.searchInput.value}`)
+      history.push(`/?q=${this.refs.searchInput.value}`)
       this.refs.searchInput.value && onSearch(this.refs.searchInput.value)
     }
   }
@@ -35,24 +35,26 @@ export default class SearchBar extends Component {
     const { onSearch, history } = this.props
 
     return (
-      <section className='my-container my-search'>
-        <input 
-          autoFocus='true'
-          className='search-input' 
-          ref='searchInput'
-          onKeyPress={(e) => this._handleKeyPress(e)}
-          value={this.state.searchValue}
-          onChange={this.handleChange}
-        />
-        <input
-          className='search-button'
-          type='button'
-          value='SEARCH'
-          onClick={() => {
-            this.refs.searchInput.value && onSearch(this.refs.searchInput.value)
-            history.push(`?q=${this.refs.searchInput.value}`)
-          }}
-        />
+      <section className='my-search-container'>
+        <div className='my-container my-search'>
+          <input 
+            autoFocus='true'
+            className='search-input' 
+            ref='searchInput'
+            onKeyPress={(e) => this._handleKeyPress(e)}
+            value={this.state.searchValue}
+            onChange={this.handleChange}
+          />
+          <input
+            className='search-button'
+            type='button'
+            value='SEARCH'
+            onClick={() => {
+              this.refs.searchInput.value && onSearch(this.refs.searchInput.value)
+              history.push(`/?q=${this.refs.searchInput.value}`)
+            }}
+          />
+        </div>
       </section>
     )
   }

@@ -1,12 +1,13 @@
 header {
   text-align: center;
   border-top: 5px solid rgba(175, 47, 47, 0.3);
+  background-color: rgba(223, 223, 223, 0.5);
+  padding: 20px 0;
 }
 
 header h1 a {
   margin: 0 auto;
-  padding: 10px;
-  font-size: 60px;
+  font-size: 80px;
   font-weight: bold;
   color: rgba(175, 47, 47, 0.5);
   text-decoration: none;

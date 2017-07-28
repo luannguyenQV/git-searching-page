@@ -1,6 +1,11 @@
+.my-search-container {
+  background-color: rgba(223, 223, 223, 0.2);
+}
+
 .my-search {
-  padding: 20px 0;
+  padding: 30px 0;
   display: flex;
+  margin-bottom: 30px;
 }
 
 .my-search .search-input {
