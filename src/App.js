@@ -5,6 +5,7 @@ import createSagaMiddleware from 'redux-saga'
 import createHistory from 'history/createBrowserHistory'
 import { Route } from 'react-router'
 import { ConnectedRouter, routerMiddleware } from 'react-router-redux'
+import logger from 'redux-logger'
 
 import Home from './modules/home/containers/Home'
 import User from './modules/user/containers/User'
@@ -21,6 +22,7 @@ const store = createStore(
     user: userReducer
   }),
   applyMiddleware(
+    logger,
     sagaMiddleware,
     historyMiddleware
   )
