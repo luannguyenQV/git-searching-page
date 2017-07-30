@@ -2,6 +2,10 @@
   margin-top: 40px;
 }
 
+.user-info .user-loading {
+  min-height: 3000px;
+}
+
 .user-detail .profile {
   display: flex;
 }

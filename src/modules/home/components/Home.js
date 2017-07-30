@@ -8,12 +8,19 @@ import { getParameterByName } from '../../../common/utils/utils'
 import '../styles/home.css'
 
 export default class Home extends Component {
+  constructor(props) {
+    super(props)
+
+    this.state = { pageNumber: 1 }
+  }
+
   componentDidMount() {
     const { onGotoPage, isFetching } = this.props
     const searchTerm = getParameterByName('q', this.props.location.search)
     const page = getParameterByName('page', this.props.location.search)
     if (searchTerm && !isFetching) {
       if (page) {
+        this.setState({ pageNumber: page })
         onGotoPage(searchTerm, page)
       }
       else {
@@ -58,6 +65,7 @@ export default class Home extends Component {
           { 
             totalPage > 1 && <div className='pagination-container'>
               <ReactPaginate previousLabel={'previous'}
+                initialPage={this.state.pageNumber - 1}
                 nextLabel={'next'}
                 breakLabel={<a href=''>...</a>}
                 breakClassName={'break-me'}

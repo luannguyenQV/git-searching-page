@@ -1,7 +1,7 @@
 import React from 'react'
 
 export default ({ user }) => (
-  <div className='profile'>
+  <div className='profile' key={`user-${user.login}`}>
     <div className='avatar'>
       <a href={user.html_url} target='_blank'>
         <img 

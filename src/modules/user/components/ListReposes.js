@@ -1,7 +1,7 @@
 import React from 'react'
 
 export default ({ user, reposes }) => (
-  <div className='reposes'>
+  <div className='reposes' key={`repos-${user.login}`}>
     <div className='search-result'>
       <strong>{user.login}</strong> has {user.public_repos} reposes:
     </div>

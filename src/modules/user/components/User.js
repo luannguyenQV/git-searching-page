@@ -9,10 +9,19 @@ import { getParameterByName } from '../../../common/utils/utils'
 import '../styles/user.css'
 
 export default class User extends Component {
+  constructor(props) {
+    super(props)
+
+    this.state = { pageNumber: 1 }
+  }
+
   componentDidMount() {
     const { onFetchUserOnPage } = this.props
     const name = this.props.match.params.name
     const page = getParameterByName('page', this.props.location.search)
+    if (page) {
+      this.setState({ pageNumber: page })
+    }
     onFetchUserOnPage({ userName: name, pageNumber: page })
   }
 
@@ -28,6 +37,7 @@ export default class User extends Component {
       reposes,
       history,
       searchValue,
+      isFetching,
       onSearch,
       didInvalidate
     } = this.props
@@ -47,7 +57,7 @@ export default class User extends Component {
         <div className='my-container my-body user-detail'>
           {
             !didInvalidate ?
-              user ? <div>
+              user && !isFetching ? <div key={user.login}>
                   <UserDetail user={user} />
                   <ListReposes 
                     user={user}
@@ -62,6 +72,7 @@ export default class User extends Component {
           { 
             totalPage > 1 && <div className='pagination-container'>
               <ReactPaginate previousLabel={'previous'}
+                initialPage={this.state.pageNumber - 1}
                 nextLabel={'next'}
                 breakLabel={<a href=''>...</a>}
                 breakClassName={'break-me'}
